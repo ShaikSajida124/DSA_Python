@@ -168,11 +168,12 @@ class SLL:
     if ((index < 0) or (index >= len(self))):
       raise IndexError("Index out of range")
     if index == 0:
-      self.remove_at_start()
-      return 
+      return self.remove_at_start()
     prev = self.get_at_index(index-1)
+    del_node = prev.next.data
     prev.next = prev.next.next
     self.size -= 1
+    return del_node
   
   def delete_duplicates(self):
     if self.is_empty():
@@ -190,7 +191,6 @@ class SLL:
   def deleteEntaireInstanceOfItem(self, item):
     if self.is_empty():
       return
-    
     while self.head and self.head.data == item:
       self.head = self.head.next
       self.size -= 1
@@ -205,19 +205,22 @@ class SLL:
   def delete_middle(self):
     if self.is_empty():
       return 
+    del_node = None
     if not self.head.next:
+      del_node = self.head.data
       self.head = None
-      self.size = 0
-      return 
-    prev = None
-    slow = self.head
-    fast = self.head 
-    while fast and fast.next:
-      prev = slow
-      slow = slow.next
-      fast = fast.next.next
-    prev.next = slow.next
+    else:
+      prev = None
+      slow = self.head
+      fast = self.head 
+      while fast and fast.next:
+        prev = slow
+        slow = slow.next
+        fast = fast.next.next
+      del_node = slow.data
+      prev.next = slow.next
     self.size -= 1
+    return del_node
   
   def check_and_fix_cycle(self):
     slow = self.head
