@@ -44,4 +44,3 @@ This list reflects the exact folder structure of the repository.
     *   📄 `deque_list.py` — Double-ended queue using a Python list.
     *   📄 `deque_list_inheritance.py` — Deque inheriting from Python's built-in `list`.
     *   📄 `deque_dll.py` — Double-ended queue optimized using a Doubly Linked List.
-    *   
