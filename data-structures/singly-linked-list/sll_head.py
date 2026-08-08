@@ -158,7 +158,7 @@ class SLL:
           self.size -= 1
           break
         current = current.next    
-    return del_node      #stop
+    return del_node      
   
   def clear(self):
     self.head = None
