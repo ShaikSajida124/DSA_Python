@@ -1,7 +1,7 @@
-class EmptyStackError(Exception):
+class EmptyStackError(IndexError):
   pass
   
-class FullStackError(Exception):
+class FullStackError(OverflowError):
   pass
   
 class Stack:
