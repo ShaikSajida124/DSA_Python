@@ -31,21 +31,20 @@ class PriorityQueue:
   def __iter__(self):
     return iter(self.__items)
 
-  def push(self, container):
+  def push(self, priority, data):
     if self.is_full():
       raise PriorityQueueOverflowError("Cannot add an item; 'PriorityQueue' is full")
-    priority = container[0]
     for i in range(len(self)):
       current_priority = self.__items[i][0]
       if priority < current_priority:
-        self.__items.insert(i, container)
+        self.__items.insert(i, (priority, data))
         return
-    self.__items.append(container)
+    self.__items.append((priority, data))
     
   def pop(self):
     if self.is_empty():
       raise PriorityQueueUnderflowError("Cannot delete an item; 'PriorityQueue' is empty")
-    return self.__items.pop(0)
+    return self.__items.pop(0)[1]
 
   def clear(self):
     self.__items.clear()
