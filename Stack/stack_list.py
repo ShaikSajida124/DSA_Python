@@ -12,8 +12,7 @@ class Stack:
   def __str__(self):
     if self.is_empty():
       return 'Stack is empty'
-    result = [str(item) for item in self.__items]
-    result.reverse()
+    result = [str(item) for item in self]
     return f"=== STACK ITEMS ===\nTop -> {' -> '.join(result)} -> None"
 
   def __iter__(self):
@@ -23,18 +22,18 @@ class Stack:
     return len(self.__items)
 
   def __repr__(self):
-    return f'Stack(size={len(self.__items)})'
+    return f'Stack(size={len(self)})'
 
   def clear(self):
     return self.__items.clear()
   
   def is_empty(self):
-    return len(self.__items) == 0
+    return len(self) == 0
 
   def is_full(self):
     if self.__capacity is None:
       return False
-    return len(self.__items) >= self.__capacity
+    return len(self) >= self.__capacity
 
   def push(self, data):
     if self.is_full():
