@@ -1,3 +1,5 @@
+class EmptyStackError(IndexError):pass
+  
 class Stack(list):
   def __init__(self, *args, **kwargs):
     if args or kwargs:
@@ -46,9 +48,6 @@ class Stack(list):
   def copy(self):
     raise AttributeError("'Stack' object has no attribute 'copy'")
 
-  def clear(self):
-    raise AttributeError("'Stack' object has no attribute 'clear'")
-
   def is_empty(self):
     return len(self) == 0
     
@@ -57,8 +56,5 @@ class Stack(list):
 
   def peek(self):
     if self.is_empty():
-      raise IndexError("Stack is empty")
+      raise EmptyStackError("Stack is empty")
     return self[-1]
-
-  def size(self):
-    return len(self)
