@@ -1,7 +1,7 @@
-class QueueUnderflowError(Exception):
+class QueueUnderflowError(IndexError):
   pass
 
-class QueueOverflowError(Exception):
+class QueueOverflowError(OverflowError):
   pass
 
 class Queue:
@@ -12,7 +12,7 @@ class Queue:
   def __str__(self):
     if self.is_empty():
       return "Queue is empty"
-    result = [str(item) for item in self.__items]
+    result = [str(item) for item in self]
     return f"=== QUEUE ITEMS ===\n[FRONT] {' -> '.join(result)} [REAR]"
 
   def __iter__(self):
@@ -30,8 +30,11 @@ class Queue:
   def is_full(self):
     if self.__capacity == None:
       return False
+    return len(self) >= self.__capacity
   
   def enqueue(self, data):
+    if self.is_full():
+      raise QueueOverflowError("Cannot enqueue; 'Queue' is full")
     self.__items.append(data)
 
   def dequeue(self):
