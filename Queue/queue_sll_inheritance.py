@@ -1,11 +1,11 @@
 from sll_head_tail import *
-class QueueUnderFlowError(Exception):
+class QueueUnderflowError(IndexError):
     pass
-class QueueOverFlowError(Exception):
+class QueueOverflowError(OverflowError):
     pass
 class Queue(SLL):
     def __init__(self, capacity=None):
-        self.capacity = 2
+        self.capacity = capacity
         super().__init__()
     
     def __repr__(self):
@@ -18,22 +18,22 @@ class Queue(SLL):
         
     def enqueue(self, data):
         if self.is_full():
-            raise QueueOverFlowError("Cannot enqueue; 'Queue' is full.")
+            raise QueueOverflowError("Cannot enqueue; 'Queue' is full.")
         super().insert_at_last(data)
     
     def dequeue(self):
         if self.is_empty():
-            raise QueueUnderFlowError("Cannot dequeue; 'Queue' is empty.")
+            raise QueueUnderflowError("Cannot dequeue; 'Queue' is empty.")
         return super().delete_first()
     
     def get_front(self):
         if self.is_empty():
-            raise QueueUnderFlowError("Cannot peek front; 'Queue' is empty.")
+            raise QueueUnderflowError("Cannot peek front; 'Queue' is empty.")
         return self.head.data
     
     def get_rear(self):
          if self.is_empty():
-             raise QueueUnderFlowError("Cannot peek rear; 'Queue' is empty.")
+             raise QueueUnderflowError("Cannot peek rear; 'Queue' is empty.")
          return self.tail.data
      
     def insert_at_start(self, item):
