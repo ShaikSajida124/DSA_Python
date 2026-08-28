@@ -1,6 +1,6 @@
-class QueueUnderFlowError(Exception):
+class QueueUnderFlowError(IndexError):
   pass
-class QueueOverFlowError(Exception):
+class QueueOverFlowError(OverflowError):
   pass
 
 class Queue(list):
