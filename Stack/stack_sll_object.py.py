@@ -1,4 +1,7 @@
 from sll import SLL
+class EmptyStackError(IndexError):pass
+class FullStackError(OverflowError):pass
+    
 class Stack:
     def __init__(self):
         self.__items = SLL()
@@ -23,14 +26,14 @@ class Stack:
     
     def pop(self):
        if self.is_empty():
-           raise IndexError("list is empty")
+           raise EmptyStackError("list is empty")
        del_node = self.__items.head.data
        self.__items.remove_at_start()
        return del_node
     
     def peek(self):
         if self.is_empty():
-            raise IndexError("list is empty")
+            raise EmptyStackError("list is empty")
         return self.__items.head.data
     
     def size(self):
