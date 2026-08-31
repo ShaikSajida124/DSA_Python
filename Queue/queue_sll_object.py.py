@@ -1,8 +1,8 @@
 from sll_head_tail import*
-class QueueUnderFlowError(IndexError):
+class QueueUnderflowError(IndexError):
   pass
 
-class QueueOverFlowError(OverflowError):
+class QueueOverflowError(OverflowError):
   pass
 
 class Queue:
