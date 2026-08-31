@@ -1,6 +1,6 @@
-class QueueUnderFlowError(IndexError):
+class QueueUnderflowError(IndexError):
   pass
-class QueueOverFlowError(OverflowError):
+class QueueOverflowError(OverflowError):
   pass
 
 class Queue(list):
@@ -26,22 +26,22 @@ class Queue(list):
 
   def enqueue(self, data):
     if self.is_full():
-      raise QueueOverFlowError("Cannot enqueue; 'Queue' is full")
+      raise QueueOverflowError("Cannot enqueue; 'Queue' is full")
     super().append(data)
 
   def dequeue(self):
     if self.is_empty():
-      raise QueueUnderFlowError("Cannot dequeue; 'Queue' is empty")
+      raise QueueUnderflowError("Cannot dequeue; 'Queue' is empty")
     return super().pop(0)
 
   def get_front(self):
     if self.is_empty():
-      raise QueueUnderFlowError("Cannot peek front; 'Queue' is empty")
+      raise QueueUnderflowError("Cannot peek front; 'Queue' is empty")
     return super().__getitem__(0)
 
   def get_rear(self):
     if self.is_empty():
-      raise QueueUnderFlowError("Cannot peek rear; 'Queue' is empty")
+      raise QueueUnderflowError("Cannot peek rear; 'Queue' is empty")
     return super().__getitem__(-1)
 
   #RESTRICTED METHODS
@@ -129,8 +129,8 @@ except AttributeError as A:
   print("Got AttributeError: ", A)
 except TypeError as T:
   print("Got TypeError: ", T)
-except QueueUnderFlowError as U:
-  print("QueueUnderFlowError:", U)
-except QueueOverFlowError as O:
-  print("QueueOverFlowError:", O)
+except QueueUnderflowError as U:
+  print("QueueUnderflowError:", U)
+except QueueOverflowError as O:
+  print("QueueOverflowError:", O)
 
