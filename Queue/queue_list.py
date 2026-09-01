@@ -12,8 +12,8 @@ class Queue:
   def __str__(self):
     if self.is_empty():
       return "Queue is empty"
-    result = [str(item) for item in self]
-    return f"=== QUEUE ITEMS ===\n[FRONT] {' -> '.join(result)} [REAR]"
+    queue_items = [str(item) for item in self]
+    return f"=== QUEUE ITEMS ===\n[FRONT] {' -> '.join(queue_items)} [REAR]"
 
   def __iter__(self):
     return iter(self.__items)
