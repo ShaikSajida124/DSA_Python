@@ -13,8 +13,8 @@ class Queue(list):
   def __str__(self):
     if self.is_empty():
       return "List is empty"
-    result = [str(item) for item in self]
-    return f"=== QUEUE ITEMS ===\n[FRONT] {' -> '.join(result)} [REAR]"
+    queue_items = [str(item) for item in self]
+    return f"=== QUEUE ITEMS ===\n[FRONT] {' -> '.join(queue_items)} [REAR]"
 
   def is_empty(self):
     return len(self) == 0
@@ -92,45 +92,4 @@ class Queue(list):
 
   def __imul__(self, others):
     raise AttributeError("In-place multiplication operator '*=' not supported on 'Queue'")
-    
-
-
-q = Queue(capacity=10)
-
-try:
-  print('List is empty:', q.is_empty())
-  print('List length:', len(q))
-  q.enqueue(10)
-  q.enqueue(20)
-  q.enqueue(30)
-  q.enqueue(40)
-  print("Queue length after adding items to queue:", len(q))
-  print("="*40)
-  print(q)
-  print("REAR:", q.get_rear())
-  print("FRONT:", q.get_front())
-  print("==========  deletion  ===========")
-  print(q.dequeue())
-  print(q.dequeue())
-  print(q.dequeue())
-  print(q.dequeue())
-  print("list length after deletion:", len(q))
-  print(q)
-  print("=========  Exception Handling  ===========")
-  q.enqueue("A")
-  q.enqueue("B")
-  q.enqueue("C")
-  q.enqueue("D")
-  q.enqueue("E")
-  q.enqueue("F")
-  print("Trying to call the restricted methods")
-  q.insert(0, "a")
-except AttributeError as A:
-  print("Got AttributeError: ", A)
-except TypeError as T:
-  print("Got TypeError: ", T)
-except QueueUnderflowError as U:
-  print("QueueUnderflowError:", U)
-except QueueOverflowError as O:
-  print("QueueOverflowError:", O)
 
