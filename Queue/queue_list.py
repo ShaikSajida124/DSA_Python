@@ -28,7 +28,7 @@ class Queue:
     return len(self) == 0
 
   def is_full(self):
-    if self.__capacity == None:
+    if self.__capacity is None:
       return False
     return len(self) >= self.__capacity
   
@@ -54,19 +54,3 @@ class Queue:
 
   def clear(self):
     self.__items.clear()
-
-q1 = Queue()
-try:
-  q1.enqueue(10)
-  q1.enqueue(20)
-  q1.enqueue(30)
-  q1.get_front()
-  q1.clear()
-  print(q1)
-except QueueUnderflowError as q:
-  print("QueueUnderflowError: ", q)
-
-
-
-
-    
