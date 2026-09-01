@@ -21,8 +21,8 @@ class Queue:
   def __str__(self):
     if self.is_empty():
       return "List is empty"
-    result = [str(node) for node in self]
-    return f"=== QUEUE ITEMS ===\n[FRONT] {' -> '.join(result)} [REAR]"
+    queue_items = [str(node_data) for node_data in self]
+    return f"=== QUEUE ITEMS ===\n[FRONT] {' -> '.join(queue_items)} [REAR]"
 
   def __iter__(self):
     current = self.front
@@ -55,13 +55,13 @@ class Queue:
   def dequeue(self):
     if self.is_empty():
       raise QueueUnderflowError("Cannot dequeue; 'Queue' is empty.")
-    del_node = self.front.data
+    del_node_data = self.front.data
     if self.front == self.rear:
       self.front = self.rear = None
     else:
       self.front = self.front.next
     self.size -= 1
-    return del_node
+    return del_node_data
 
   def get_front(self):
     if self.is_empty():
