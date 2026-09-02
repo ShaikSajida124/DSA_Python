@@ -1,6 +1,6 @@
-class DequeUnderFlowError(IndexError):
+class DequeUnderflowError(IndexError):
   pass
-class DequeOverFlowError(OverflowError):
+class DequeOverflowError(OverflowError):
   pass
   
 class Deque:
@@ -14,8 +14,8 @@ class Deque:
   def __str__(self):
     if self.is_empty():
       return "List is empty"
-    result = [str(item) for item in self]
-    return f"=== DEQUE ITEMS ===\n[FRONT] {' -> '.join(result)} [REAR]"
+    deque_items = [str(item) for item in self]
+    return f"=== DEQUE ITEMS ===\n[FRONT] {' -> '.join(deque_items)} [REAR]"
 
   def __repr__(self):
     return f'Deque(size={len(self)})'
@@ -33,32 +33,32 @@ class Deque:
 
   def insert_at_front(self, data):
     if self.is_full():
-      raise DequeOverFlowError("Cannot insert an item; 'Deque' is full")
+      raise DequeOverflowError("Cannot insert an item; 'Deque' is full")
     self.__items.insert(0, data)
 
   def insert_at_rear(self, data):
     if self.is_full():
-      raise DequeOverFlowError("Cannot insert an item; 'Deque' is full")
+      raise DequeOverflowError("Cannot insert an item; 'Deque' is full")
     self.__items.append(data)
 
   def delete_front(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot delete front; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot delete front; 'Deque' is empty")
     return self.__items.pop(0)
 
   def delete_rear(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot delete rear; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot delete rear; 'Deque' is empty")
     return self.__items.pop()
 
   def get_front(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot peek front; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot peek front; 'Deque' is empty")
     return self.__items[0]
 
   def get_rear(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot peek rear; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot peek rear; 'Deque' is empty")
     return self.__items[-1]
 
   def clear(self):
