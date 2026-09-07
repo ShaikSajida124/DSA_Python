@@ -17,55 +17,71 @@ class BST:
 
   def insert(self, data):
     node = Node(data)
-    self.__insert_helper(self.root, node)
-  
-
-  def __insert_helper(self, current, node):
-    if current is None:
+    if self.is_empty():
       self.root = node
       self.size += 1
-    elif node.data == current.data:
+    else:
+      self.rinsert(self.root, node)
+
+  def rinsert(self, root, node):
+    if node.data == root.data:
       return
-    elif node.data < current.data:
-      if not current.left:
-        current.left = node
+    elif node.data < root.data:
+      if not root.left:
+        root.left = node
         self.size += 1
       else:
-        self.__insert_helper(current.left, node)
+        self.rinsert(root.left, node)
     else:
-      if not current.right:
-        current.right = node
+      if not root.right:
+        root.right = node
         self.size += 1
       else:
-        self.__insert_helper(current.right, node)
+        self.rinsert(root.right, node)
 
-  def inorder_traverse(self, current):
-    if current is None:
+  #inorder traversal
+  def inorder_traversal(self):
+    self.rinorder_traversal(self.root)
+
+  def rinorder_traversal(self, root):
+    if root is None:
       return
-    self.inorder_traverse(current.left)
-    print(current.data)
-    self.inorder_traverse(current.right)
+    self.rinorder_traversal(root.left)
+    print(root.data)
+    self.rinorder_traversal(root.right)
 
-  def preorder_traverse(self, current):
-    if current is None:
-      return 
-    print(current.data)
-    self.preorder_traverse(current.left)
-    self.preorder_traverse(current.right)
+  #preorder traversal
+  def preorder_traversal(self):
+    self.rpreorder_traversal(self.root)
 
-  def postorder_traverse(self, current):
-    if current is None:
+  def rpreorder_traversal(self, root):
+    if root is None:
       return
-    self.postorder_traverse(current.left)
-    self.postorder_traverse(current.right)
-    print(current.data)
+    print(root.data)
+    self.rpreorder_traversal(root.left)
+    self.rpreorder_traversal(root.right)
 
-  def search(self, current, item):
-    if not current or current.data == item:
-      return current
-    elif item < current.data:
-      return self.search(current.left, item)
-    else:
-      return self.search(current.right, item)
+  #postorder traversal
+  def postorder_traversal(self):
+    self.rpostorder_traversal(self.root)
 
+  def rpostorder_traversal(self, root):
+    if root is None:
+      return
+    self.rpostorder_traversal(root.left)
+    self.rpostorder_traversal(root.right)
+    print(root.data)
+
+  #This implementation is to count the node height.
+  #If we want to count the edges we can just assume missing childs as -1 instead of 0.
+  def find_height(self, root):
+    if not root: 
+      return 0
+    return max(self.find_height(root.left) if root.left else 0, self.find_height(root.right) if root.right else 0) + 1
+
+
+      
+
+    
+    
       
