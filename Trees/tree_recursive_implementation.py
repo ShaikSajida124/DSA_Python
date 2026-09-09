@@ -79,7 +79,18 @@ class BST:
       return 0
     return max(self.find_height(root.left) if root.left else 0, self.find_height(root.right) if root.right else 0) + 1
 
+  def search(self, data):
+    return self.rsearch(self.root, data)
 
+  def rsearch(self, root, data):
+    if not root or root.data == data:
+      return root
+    elif data < root.data:
+      return self.rsearch(root.left, data)
+    else:
+      return self.rsearch(root.right, data)
+    
+    
       
 
     
