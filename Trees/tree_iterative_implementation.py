@@ -324,5 +324,4 @@ bst.insert(45)
 #bst.preorder_traverse()
 #bst.postorder_traverse()
 bst.levelorder_traverse()
-print(bst.tree_height(bst.root))
     
