@@ -300,7 +300,7 @@ class BST:
           else:
             par_pred.right = pred.left
         else:
-          if pred.data < par_pred.data:
+          if pred.data <= par_pred.data:
             par_pred.left = None
           else:
             par_pred.right = None
