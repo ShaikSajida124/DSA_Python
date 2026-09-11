@@ -210,12 +210,103 @@ class BST:
       if current.right:
         queue.enqueue(current.right)
 
-  def tree_height(self, current):
-    if not current or ((not current.left) and (not current.right)):
-      return 0
-    left_height = self.tree_height(current.left) if current.left else 0
-    right_height = self.tree_height(current.right) if current.right else 0
-    return max(left_height, right_height)+1
+  def find_height(self, root):
+    if root is None:
+      return -1
+    queue = Queue()
+    queue.enqueue(root)
+    height = -1
+    length = 1
+    while not queue.is_empty():
+      for i in range(length):
+        pop_element = queue.dequeue()
+        if pop_element.left:
+          queue.enqueue(pop_element.left)
+        if pop_element.right:
+          queue.enqueue(pop_element.right)
+      length = len(queue)
+      height += 1
+    return height
+
+  def find_minimum(self, root):
+    if root is None:
+      return
+    while root.left:
+      root = root.left
+    return root
+
+  def find_maximum(self, root):
+    if root is None:
+      return
+    while root.right:
+      root = root.right
+    return root
+
+  def delete_item(self, item):
+    if self.is_empty():
+      return
+    par_ptr = None
+    ptr = self.root
+    while ptr:
+      if item == ptr.data:
+        break
+      par_ptr = ptr
+      if item < ptr.data:
+        ptr = ptr.left
+      else:
+        ptr = ptr.right
+    del_node_data = None
+    if ptr:
+      del_node_data = ptr.data
+      if not ptr.left and not ptr.right:
+        if ptr == self.root:
+          self.root = None
+        elif ptr.data < par_ptr.data:
+          par_ptr.left = None
+        else:
+          par_ptr.right = None
+      elif ptr.left and not ptr.right:
+        if ptr == self.root:
+          self.root = ptr.left
+        else:
+          if ptr.data < par_ptr.data:
+            par_ptr.left = ptr.left
+          else:
+            par_ptr.right = ptr.left
+      elif ptr.right and not ptr.left:
+        if ptr == self.root:
+          self.root = ptr.right
+        else:
+          if ptr.data < par_ptr.data:
+            par_ptr.left = ptr.right
+          else:
+            par_ptr.right = ptr.right
+      else:
+        pred = self.find_maximum(ptr.left)
+        ptr.data = pred.data
+        par_pred = ptr
+        pred = ptr.left
+        while pred:
+          if pred.data == ptr.data:
+            break
+          par_pred = pred
+          if pred.data < ptr.data:
+            pred = pred.left
+          else:
+            pred = pred.right
+        if pred.left:
+          if pred.data < par_pred.data:
+            par_pred.left = pred.left
+          else:
+            par_pred.right = pred.left
+        else:
+          if pred.data < par_pred.data:
+            par_pred.left = None
+          else:
+            par_pred.right = None
+      self.size -= 1
+      return del_node_data
+          
   
         
 bst = BST()
