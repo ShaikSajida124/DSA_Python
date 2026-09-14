@@ -295,7 +295,7 @@ class BST:
           else:
             pred = pred.right
         if pred.left:
-          if pred.data < par_pred.data:
+          if pred.data <= par_pred.data:
             par_pred.left = pred.left
           else:
             par_pred.right = pred.left
