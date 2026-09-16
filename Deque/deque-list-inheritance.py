@@ -1,7 +1,7 @@
 import unittest
-class DequeUnderFlowError(IndexError):
+class DequeUnderflowError(IndexError):
   pass
-class DequeOverFlowError(OverflowError):
+class DequeOverflowError(OverflowError):
   pass
   
 #Deque implementation by inheriting list
@@ -28,32 +28,32 @@ class Deque(list):
 
   def insert_at_front(self, data):
     if self.is_full():
-      raise DequeOverFlowError("Cannot insert an element; 'Deque' is full")
+      raise DequeOverflowError("Cannot insert an element; 'Deque' is full")
     super().insert(0, data)
 
   def insert_at_rear(self, data):
     if self.is_full():
-      raise DequeOverFlowError("Cannot insert an element; 'Deque' is full")
+      raise DequeOverflowError("Cannot insert an element; 'Deque' is full")
     super().append(data)
 
   def delete_front(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot delete an item; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot delete an item; 'Deque' is empty")
     return super().pop(0)
 
   def delete_rear(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot delete an item; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot delete an item; 'Deque' is empty")
     return super().pop()
 
   def get_front(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot peek front; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot peek front; 'Deque' is empty")
     return super().__getitem__(0)
 
   def get_rear(self):
     if self.is_empty():
-      raise DequeUnderFlowError("Cannot peek rear; 'Deque' is empty")
+      raise DequeUnderflowError("Cannot peek rear; 'Deque' is empty")
     return super().__getitem__(-1)
 
   #Restricted Methods
@@ -127,11 +127,11 @@ class myDeque(unittest.TestCase):
   def test_underflow_exception(self):
     dq = Deque()
 
-    with self.assertRaises(DequeUnderFlowError):
+    with self.assertRaises(DequeUnderflowError):
       dq.delete_front()
-    with self.assertRaises(DequeUnderFlowError):
+    with self.assertRaises(DequeUnderflowError):
       dq.delete_rear()
-    with self.assertRaises(DequeUnderFlowError):
+    with self.assertRaises(DequeUnderflowError):
       dq.get_rear()
 
   def test_overflow_exception(self):
@@ -147,7 +147,7 @@ class myDeque(unittest.TestCase):
     dq.insert_at_rear(20)
 
     self.assertTrue(dq.is_full())
-    with self.assertRaises(DequeOverFlowError):
+    with self.assertRaises(DequeOverflowError):
       dq.insert_at_front(30)
 
   def test_string_formatting(self):
