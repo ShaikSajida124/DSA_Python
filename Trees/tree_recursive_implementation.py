@@ -89,6 +89,36 @@ class BST:
       return self.rsearch(root.left, data)
     else:
       return self.rsearch(root.right, data)
+      
+  def find_minimum(self, root):
+    if root is None or root.left is None:
+      return root
+    return self.find_minimum(root.left)
+
+  def find_maximum(self, root):
+    if root is None or root.right is None:
+      return root
+    return self.find_maximum(root.right)
+    
+  def delete(self, item):
+    self.root = self.rdelete(self.root, item)
+  
+  def rdelete(self, root, item):
+    if root is None:
+      return root
+    if item < root.data:
+      root.left = self.rdelete(root.left, item)
+    elif item > root.data:
+      root.right = self.rdelete(root.right, item)
+    else:
+      self.size -= 1
+      if root.left is None:
+        return root.right
+      elif root.right is None:
+        return root.left
+      root.data = self.find_minimum(root.right).data
+      self.rdelete(root.right, root.data)
+    return root
     
     
       
