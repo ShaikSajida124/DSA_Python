@@ -290,10 +290,7 @@ class BST:
           if pred.data == ptr.data:
             break
           par_pred = pred
-          if pred.data < ptr.data:
-            pred = pred.left
-          else:
-            pred = pred.right
+          pred = pred.right
         if pred.left:
           if pred.data <= par_pred.data:
             par_pred.left = pred.left
