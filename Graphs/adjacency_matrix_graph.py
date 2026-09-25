@@ -18,8 +18,8 @@ class Graph:
     else:
       raise IndexError("Invalid vertex")
     
-  def has_edge(self, vertex1, vertex2):
-    if self.adj_matrix[vertex1][vertex2] > 0 and self.adj_matrix[vertex2][vertex1] > 0:
+  def has_edge(self, u, v):
+    if self.adj_matrix[u][v] > 0:
       return True
     return False
 
