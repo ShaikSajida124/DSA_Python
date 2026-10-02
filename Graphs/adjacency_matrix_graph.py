@@ -122,10 +122,16 @@ class Graph:
       print(i)
       
   def bfs(self):
+    visited_vertices = [False]*self.vertex_count
+    self.bfsHelper(0, visited_vertices)
+    for i in range(self.vertex_count):
+      if visited_vertices[i] != True:
+        self.bfsHelper(i, visited_vertices)
+      
+  def bfsHelper(self, u, visited_vertices):
     queue = Queue()
-    visited_vertices = [False for i in range(self.vertex_count)]
-    queue.enqueue(0)
-    visited_vertices[0] = True
+    queue.enqueue(u)
+    visited_vertices[u] = True
     while not queue.is_empty():
       current = queue.dequeue()
       print(current)
