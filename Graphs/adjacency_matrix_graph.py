@@ -144,7 +144,7 @@ class Graph:
       current = stack.pop()
       print(current)
       adj_current = self.adj_matrix[current]
-      for i in range(len(adj_current)):
+      for i in range(len(adj_current)-1, -1, -1):
         if adj_current[i] and visited_vertices[i] != True:
           stack.push(i)
           visited_vertices[i] = True
