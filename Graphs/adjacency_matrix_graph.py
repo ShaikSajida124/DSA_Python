@@ -122,13 +122,13 @@ class Graph:
       print(i)
       
   def bfs(self):
-    visited_vertices = [False]*self.vertex_count
-    self.bfsHelper(0, visited_vertices)
+    visited = [False]*self.vertex_count
+    self.bfs_helper(0, visited)
     for i in range(self.vertex_count):
-      if visited_vertices[i] != True:
-        self.bfsHelper(i, visited_vertices)
+      if not visited[i]:
+        self.bfs_helper(i, visited)
       
-  def bfsHelper(self, u, visited_vertices):
+  def bfs_helper(self, u, visited_vertices):
     queue = Queue()
     queue.enqueue(u)
     visited_vertices[u] = True
@@ -137,24 +137,29 @@ class Graph:
       print(current)
       adj_current = self.adj_matrix[current]
       for i in range(len(adj_current)):
-        if adj_current[i] and visited_vertices[i] != True:
+        if adj_current[i] and not visited_vertices[i]:
           queue.enqueue(i)
           visited_vertices[i] = True
 
   def dfs(self):
+    visited = [False]*self.vertex_count
+    self.dfs_helper(0, visited)
+    for i in range(self.vertex_count):
+      if not visited[i]:
+        self.dfs_helper(i, visited)
+
+  def dfs_helper(self, u, visited_vertices):
     stack = Stack()
-    visited_vertices = [False for i in range(self.vertex_count)]
-    stack.push(0)
-    visited_vertices[0] = True
+    stack.push(u)
+    visited_vertices[u] = True
     while not stack.is_empty():
       current = stack.pop()
       print(current)
       adj_current = self.adj_matrix[current]
       for i in range(len(adj_current)-1, -1, -1):
-        if adj_current[i] and visited_vertices[i] != True:
+        if adj_current[i] and not visited_vertices[i]:
           stack.push(i)
           visited_vertices[i] = True
-          
 
 class testCode(unittest.TestCase):
   def test_AddingEdges(self):
