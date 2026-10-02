@@ -39,9 +39,39 @@ class Graph:
   def print_adj_list(self):
     for vertex, n in self.adj_list.items():
       print(f'v {vertex} : {n}')
-          
-
       
+  def bfs(self):
+    visited = [False]*self.vertex_count
+    self.bfs_helper(0, visited)
+    for i in range(self.vertex_count):
+      if not visited[i]:
+        self.bfs_helper(i, visited)
+
+  def bfs_helper(self, u, visited_vertices):
+    queue = Queue()
+    queue.enqueue(u)
+    visited_vertices[u] = True
+    while not queue.is_empty():
+      current = queue.dequeue()
+      print(current)
+      for vertex, weight in self.adj_list[current]:
+        if not visited_vertices[vertex]:
+          visited_vertices[vertex] = True
+          queue.enqueue(vertex)
+
+  def dfs(self):
+    visited = [False]*self.vertex_count
+    self.dfs_helper(0, visited)
+    for i in range(self.vertex_count):
+      if not visited[i]:
+        self.dfs_helper(i, visited)
+
+  def dfs_helper(self, u, visited_vertices):
+    print(u)
+    visited_vertices[u] = True
+    for vertex, weight in self.adj_list[u]:
+      if not visited_vertices[vertex]:
+        self.dfs_helper(vertex, visited_vertices)
 
 g = Graph(4)
 g.add_edge(0, 2, 10)
