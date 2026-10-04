@@ -111,13 +111,13 @@ class BST:
     elif item > root.data:
       root.right = self.rdelete(root.right, item)
     else:
-      self.size -= 1
       if root.left is None:
         return root.right
       elif root.right is None:
         return root.left
       root.data = self.find_minimum(root.right).data
-      self.rdelete(root.right, root.data)
+      root.right = self.rdelete(root.right, root.data)
+      self.size -= 1
     return root
     
     
