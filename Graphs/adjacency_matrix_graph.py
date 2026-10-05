@@ -139,7 +139,7 @@ class Graph:
       print(current)
       adj_current = self.adj_matrix[current]
       for i in range(len(adj_current)):
-        if adj_current[i] and not visited_vertices[i]:
+        if adj_current[i] != 0 and not visited_vertices[i]:
           queue.enqueue(i)
           visited_vertices[i] = True
 
@@ -159,7 +159,7 @@ class Graph:
       print(current)
       adj_current = self.adj_matrix[current]
       for i in range(len(adj_current)-1, -1, -1):
-        if adj_current[i] and not visited_vertices[i]:
+        if adj_current[i] != 0 and not visited_vertices[i]:
           stack.push(i)
           visited_vertices[i] = True
 
