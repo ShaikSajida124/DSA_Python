@@ -104,19 +104,21 @@ class Graph:
      self.adj_matrix[u][v] = weight
      self.adj_matrix[v][u] = weight
    else:
-     raise IndexError("Invalid vertex")
+     raise IndexError("Invalid vertices")
 
   def remove_edge(self, u, v):
     if 0 <= u < self.vertex_count and 0 <= v < self.vertex_count:
       self.adj_matrix[u][v] = 0
       self.adj_matrix[v][u] = 0
     else:
-      raise IndexError("Invalid vertex")
+      raise IndexError("Invalid vertices")
     
   def has_edge(self, u, v):
-    if self.adj_matrix[u][v] > 0:
-      return True
-    return False
+    if 0 <= u < self.vertex_count and 0 <= v < self.vertex_count:
+      return self.adj_matrix[u][v] != 0
+    else:
+      raise IndexError("Invalid vertices")
+      
   def print_adj_matrix(self):
     for i in self.adj_matrix:
       print(i)
