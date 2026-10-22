@@ -1,7 +1,7 @@
 class PriorityQueueUnderflowError(IndexError): pass
 
-class PriorityQueueOverflowError(OverflowError):
-  pass
+class PriorityQueueOverflowError(OverflowError):pass
+  
 #priority Queue
 class PriorityQueue:
   def __init__(self, capacity=None):
