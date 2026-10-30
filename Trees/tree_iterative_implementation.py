@@ -317,8 +317,5 @@ bst.insert(85)
 bst.insert(90)
 bst.insert(95)
 bst.insert(45)
-#bst.inorder_traverse()
-#bst.preorder_traverse()
-#bst.postorder_traverse()
 bst.levelorder_traverse()
     
