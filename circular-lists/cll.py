@@ -4,8 +4,8 @@ class Node:
     self.next = next
 
 class CLL:
-  def __init__(self, tail=None):
-    self.tail = tail
+  def __init__(self):
+    self.tail = None
     self.size = 0
 
   def __len__(self):
@@ -35,7 +35,7 @@ class CLL:
         break
   
   def is_empty(self):
-    return self.tail == None
+    return self.tail is None
   
   def insert_at_start(self, item):
     node = Node(item)
