@@ -68,15 +68,18 @@ class CLL:
   def delete_first(self):
     if self.is_empty():
       return 
+    del_item = self.tail.next.data
     if self.tail.next == self.tail:
       self.tail = None
     else:
       self.tail.next = self.tail.next.next
     self.size -= 1
+    return del_item
   
   def delete_last(self):
     if self.is_empty():
       return 
+    del_item = self.tail.data
     if self.tail.next == self.tail:
       self.tail = None
     else:
@@ -86,6 +89,7 @@ class CLL:
       current.next = current.next.next
       self.tail = current 
     self.size -= 1
+    return del_item
     
   def delete_after(self, address):
     if address:
