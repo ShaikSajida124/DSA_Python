@@ -78,5 +78,6 @@ g.add_edge(0, 2, 10)
 g.add_edge(1,2,5)
 g.add_edge(2, 3, 11)
 g.add_edge(0, 1, 4)
-g.add_edge(1,2)
+g.add_edge(1,2, 10)
 g.print_adj_list()
+
